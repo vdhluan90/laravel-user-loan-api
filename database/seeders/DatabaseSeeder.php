@@ -2,10 +2,14 @@
 
 namespace Database\Seeders;
 
+use Database\Seeders\Traits\TruncateTable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
+    use TruncateTable;
+
     /**
      * Seed the application's database.
      *
@@ -13,6 +17,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        Model::unguard();
+
+        $this->truncateMultiple([
+            'loan_plans',
+            'loans',
+            'loan_schedules',
+            'transactions',
+        ]);
+
+        $this->call(LoanPlansSeeder::class);
+
+        Model::reguard();
     }
 }

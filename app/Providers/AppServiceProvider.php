@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Loan;
+use App\Models\Transaction;
+use App\Observers\LoanObserver;
+use App\Observers\TransactionObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +17,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        if ($this->app->environment() !== 'production') {
+            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+        }
     }
 
     /**
@@ -23,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Loan::observe(LoanObserver::class);
+        Transaction::observe(TransactionObserver::class);
     }
 }

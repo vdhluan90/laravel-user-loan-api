@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\TransactionController;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -11,4 +14,12 @@
 |
 */
 
-includeRouteFiles(__DIR__.'/api/');
+Route::group([
+    'prefix' => 'transactions'
+], function () {
+    Route::group([
+        'middleware' => 'auth:api'
+    ], function() {
+        Route::post('', [TransactionController::class, 'create'])->name('transactions.create');
+    });
+});

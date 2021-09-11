@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoanPlanController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -11,4 +14,8 @@
 |
 */
 
-includeRouteFiles(__DIR__.'/api/');
+Route::group([
+    'prefix' => 'loan-plans'
+], function () {
+    Route::get('', [LoanPlanController::class, 'index'])->name('loanPlans.getAll');
+});

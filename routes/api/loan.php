@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\LoanController;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -11,4 +14,13 @@
 |
 */
 
-includeRouteFiles(__DIR__.'/api/');
+Route::group([
+    'prefix' => 'loans'
+], function () {
+    Route::group([
+        'middleware' => 'auth:api'
+    ], function() {
+        Route::get('/{id}', [LoanController::class, 'get'])->name('loans.getDetail');
+        Route::post('', [LoanController::class, 'create'])->name('loans.create');
+    });
+});
