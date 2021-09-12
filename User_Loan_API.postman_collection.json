@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "018fcee6-e868-41b8-87d3-fb720de68c7b",
-		"name": "User Loan API",
+		"name": "User_Loan_API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -291,7 +291,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"note\": \"buy house\",\n    \"amount\": 12000000,\n    \"type\": \"monthly\",\n    \"loan_schedule_id\": 1,\n    \"loan_id\": 1\n}",
+							"raw": "{\n    \"note\": \"buy house\",\n    \"amount\": 1078000,\n    \"type\": \"monthly\",\n    \"loan_schedule_id\": 12,\n    \"loan_id\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -339,7 +339,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"note\": \"buy house\",\n    \"amount\": 12000000,\n    \"type\": \"settlement\",\n    \"loan_id\": 1\n}",
+							"raw": "{\n    \"note\": \"buy house\",\n    \"amount\": 11858000,\n    \"penalty_amount\": 355740,\n    \"type\": \"settlement\",\n    \"loan_id\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"

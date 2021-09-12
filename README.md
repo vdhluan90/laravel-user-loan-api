@@ -1,70 +1,66 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# laravel-user-loan-api
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+[![Packagist](https://img.shields.io/packagist/v/kennethtomagan/laravel-6-api-boilerplate.svg)](https://packagist.org/packages/kennethtomagan/laravel-6-api-boilerplate)
+[![Packagist](https://poser.pugx.org/kennethtomagan/laravel-6-api-boilerplate/d/total.svg)](https://packagist.org/packages/kennethtomagan/laravel-6-api-boilerplate)
+[![Packagist](https://img.shields.io/packagist/l/kennethtomagan/laravel-6-api-boilerplate.svg)](https://packagist.org/packages/kennethtomagan/laravel-6-api-boilerplate)
 
-## About Laravel
+This is a basic sample for writing Restful API projects using Laravel with requirement:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Build a simple API that allows to handle user loans.
+- Necessary entities will have to be (but not limited to): users, loans, and repayments.
+- The API should allow simple use cases, which include (but are not limited to): creating a new
+user, creating a new loan for a user, with different attributes (e.g. duration, repayment
+frequency, interest rate, arrangement fee, etc.), and allowing a user to make repayments for
+the loan.
+- The app logic should figure out and not allow obvious errors. For example a user cannot
+make a repayment for a loan that’s already been prepaid
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+##### Packages:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+* Laravel Passport - [laravel/passport](https://github.com/laravel/passport)
+* Laravel-CORS [barryvdh/laravel-cors](http://github.com/barryvdh/laravel-cors)
 
-## Learning Laravel
+##### Require:
+* PHP: ^7.4
+* MySql: v8.0.23
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Features
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+* Passport authentication
+* Basic features: Registration, Login create Loan, create Transaction for repayment
+* JSON API Format response.
+* Unit/Feature Testing.
 
-## Laravel Sponsors
+## Installation
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+#### Install Dependencies
 
-### Premium Partners
+```
+$ composer install
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
+#### Configure the Environment
+Create `.env` file:
+```
+$ cat .env.example > .env
+```
+Run `php artisan key:generate`
 
-## Contributing
+#### Migrate and Seed the Database
+```
+$ php artisan migrate:fresh --seed
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+#### Setup Passport
+```
+$ php artisan passport:install
+```
 
-## Code of Conduct
+#### Run Test
+```
+$ php artisan test
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-
-php artisan migrate
-php artisan migrate:refresh --force
-php artisan passport:install
-php artisan db:seed
+## API Documentation
+* Postman API Documentation is in `User_Loan_API.postman_collection.json`
 

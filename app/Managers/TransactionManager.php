@@ -65,6 +65,10 @@ class TransactionManager
                     throw new \Exception('Loan schedule is not found!');
                 }
 
+                if ($loanSchedule->status == LoanSchedule::PAID_STATUS) {
+                    throw new \Exception('This schedule has been paid!');
+                }
+
                 if ($data['amount'] != $loanSchedule->amount) {
                     throw new \Exception("Invalid amount! The valid amount should be $loanSchedule->amount");
                 }
