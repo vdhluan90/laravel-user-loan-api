@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
+use Database\Factories\LoanFactory;
 use Eloquent;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Loan extends Eloquent
 {
+    use HasFactory;
+
     public $timestamps = true;
     public const IN_PROGRESS_STATUS = 'in_progress';
     public const COMPLETED_STATUS = 'completed';
@@ -40,5 +44,15 @@ class Loan extends Eloquent
     public function loanSchedules()
     {
         return $this->hasMany(LoanSchedule::class);
+    }
+
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    protected static function newFactory()
+    {
+        return LoanFactory::new();
     }
 }

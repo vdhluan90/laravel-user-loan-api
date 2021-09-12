@@ -34,19 +34,20 @@ class TransactionManager
     {
         $transaction = new Transaction($data);
         $transaction->user_id = $user->id;
-        $this->validateTransaction($data);
+        $this->validateTransaction($transaction, $data);
         $transaction->save();
 
         return $transaction;
     }
 
     /**
+     * @param Transaction $transaction
      * @param array $data
      * @throws \Exception
      */
-    private function validateTransaction(array $data): void
+    private function validateTransaction(Transaction $transaction, array $data): void
     {
-        $loan = $this->loanRepository->find($data['loan_id'] ?? null);
+        $loan = $this->loanRepository->findLoanById($data['loan_id'] ?? 0);
 
         if (!$loan) {
             throw new \Exception('Loan is not found!');
@@ -74,9 +75,11 @@ class TransactionManager
                 break;
             case Transaction::SETTLEMENT_TYPE:
                 $debtMoney = $this->loanScheduleRepository->getDebtAmount($data['loan_id']);
+                $penaltyAmount = $debtMoney * $loan->penalty_rate / 100;
+                $transaction->penalty_amount = $penaltyAmount;
 
-                if ($data['penalty_amount'] != $loan->penalty_amount) {
-                    throw new \Exception("Invalid penalty amount! The valid penalty amount should be $loan->penalty_amount");
+                if (!isset($data['penalty_amount']) || $data['penalty_amount'] != $penaltyAmount) {
+                    throw new \Exception("Invalid penalty amount! The valid penalty amount should be $penaltyAmount");
                 }
 
                 if ($data['amount'] != $debtMoney) {
